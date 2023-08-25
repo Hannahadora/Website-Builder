@@ -7,15 +7,14 @@
       </p>
     </div>
     <div class="grid grid-cols-3 gap-[16px]">
-      <UseDraggable :initialValue="{ x: 10, y: 10 }">
-        <ContentCard title="Text">
-          <template #icon>
-            <div>
-              <Text />
-            </div>
-          </template>
-        </ContentCard>
-      </UseDraggable>
+      <div ref="textRef" :style="style" style="position: absolute">
+       <ContentCard title="Text">
+        <template #icon>
+          <Text />
+        </template>
+      </ContentCard>
+      </div>
+      
       <ContentCard title="Image">
         <template #icon>
           <Image />
@@ -36,9 +35,19 @@ import Button from "./icons/Button.vue";
 import Image from "./icons/Image.vue";
 import Text from "./icons/Text.vue";
 import { ref, onMounted } from "vue";
+
 import { useDraggable } from "@vueuse/core";
 
+const textRef = ref<HTMLElement | null>(null);
 
+// `style` will be a helper computed for `left: ?px; top: ?px;`
+const { x, y, style } = useDraggable(textRef, {
+  initialValue: { x: 40, y: 40 },
+});
+
+onMounted(() => {
+  console.log("textref", textRef);
+});
 </script>
 
 <style></style>
