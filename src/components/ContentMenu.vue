@@ -7,14 +7,17 @@
       </p>
     </div>
     <div class="grid grid-cols-3 gap-[16px]">
-      <div ref="textRef" :style="style" style="position: absolute">
-       <ContentCard title="Text">
+      <ContentCard title="Text">
         <template #icon>
           <Text />
         </template>
+        <template #draggable>
+          <div class="w-full" ref="textRef" :style="style" style="position: fixed">
+            <textarea name="" id="" cols="10" rows="10"></textarea>
+          </div>
+        </template>
       </ContentCard>
-      </div>
-      
+
       <ContentCard title="Image">
         <template #icon>
           <Image />
