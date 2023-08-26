@@ -23,7 +23,7 @@ const initialWidth = ref(0);
 const startResize = (event: MouseEvent) => {
   isResizing.value = true;
   initialMouseX.value = event.clientX;
-  initialWidth.value = event.target.parentElement.offsetWidth;
+  initialWidth.value = event.target.offsetWidth;
 
   window.addEventListener("mousemove", resizeImage);
   window.addEventListener("mouseup", stopResize);
@@ -33,7 +33,7 @@ const resizeImage = (event: MouseEvent) => {
   if (isResizing.value) {
     const offset = event.clientX - initialMouseX.value;
     const newWidth = initialWidth.value + offset;
-    event.target.parentElement.style.width = `${newWidth}px`;
+    event.target.style.width = `${newWidth}px`;
   }
 };
 
@@ -48,7 +48,7 @@ const stopResize = () => {
 .image-block {
   border: 1px solid #ccc;
   position: relative;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }

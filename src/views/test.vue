@@ -45,9 +45,9 @@ import ImageBlock from "../components/Testers/ImageBlock.vue";
 const blocks = ref(<any[]>[]);
 const showImageModal = ref(false);
 const predefinedImages = ref<string[]>([
-  "../assets/images/hero-1.webp",
-  "../assets/images/hero-2.jpeg",
-  "../assets/images/hero-3.jpg",
+  "../../src/assets/images/hero-image-1.webp",
+  "../../src/assets/images/hero-image-2.jpeg",
+  "../../src/assets/images/hero-image-3.webp",
   // Add more predefined images here
 ]);
 
