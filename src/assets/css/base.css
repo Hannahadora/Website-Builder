@@ -17,3 +17,14 @@ body {
 .font-poppins {
   font-family: "Poppins", sans-serif;
 }
+
+.resize-icon {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
+  background-color: #000;
+  border: 1px solid #fff;
+}

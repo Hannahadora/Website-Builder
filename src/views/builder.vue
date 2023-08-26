@@ -1,10 +1,10 @@
 <template>
   <main>
-    <div class="flex items-start">
-      <section class="w-[25%]">
+    <div class="relative flex items-start">
+      <section class="w-[25%] fixed left-0 top-0 ">
         <SideBar />
       </section>
-      <section class="ml-[16px] mr-[24px] mt-[16px] w-[70%]">
+      <section class="relative left-[25%] ml-[16px] mr-[24px] mt-[16px] w-[70%]">
         <div class="flex items-center">
           <h5
             @click="setEditMode(true)"
@@ -21,7 +21,7 @@
             Preview
           </h5>
         </div>
-        <div class="mt-[10px] rounded bg-[#fff]  p-[16px]">
+        <div class="mt-[10px] rounded bg-[#fff] border border-red-500 overflow-hidden p-[16px]">
           <Edit v-if="editMode" />
           <Preview v-else />
         </div>

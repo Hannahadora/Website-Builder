@@ -1,23 +1,34 @@
+<script setup lang="ts">
+import { useToolsStore } from "@/stores/toolsbar";
+defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+});
+
+const toolsStore = useToolsStore();
+
+const showStyle = (title: string) => {
+  toolsStore.toggleEditorStyle(title.toLowerCase());
+};
+</script>
 <template>
-  <div class="border border-green-500 rounded-[5px] max-w-[100px] cursor-move">
-    <div class="py-[16px] px-[16px] flex flex-col items-center justify-center">
+  <div
+    class="border border-green-500 rounded-[5px] max-w-[50px] cursor-pointer"
+  >
+    <div
+      class="py-[4px] px-[4px] flex flex-col items-center justify-center"
+      @click="showStyle(title)"
+    >
       <slot name="icon"></slot>
       <slot name="draggable"></slot>
 
-      <h6 class="text-[16px] mt-[16px] text-[#333] text-center">
+      <h6 class="text-[10px] mt-[4px] text-[#000] text-center">
         {{ title }}
       </h6>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-defineProps({
-  title: {
-    type: String,
-    default: 'Content type'
-  }
-})
-</script>
 
 <style></style>

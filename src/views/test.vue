@@ -39,8 +39,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { VueDraggableNext as draggable } from "vue-draggable-next";
-import TextBlock from "../components/Testers/TextBlock.vue";
-import ImageBlock from "../components/Testers/ImageBlock.vue";
+import TextBlock from "../components/TextEditor/TextStyle.vue";
+import ImageBlock from "../components/ImageEditor/ImageBlock.vue";
 
 const blocks = ref(<any[]>[]);
 const showImageModal = ref(false);

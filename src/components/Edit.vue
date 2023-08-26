@@ -1,17 +1,30 @@
+<script setup lang="ts">
+import { ref } from "vue";
+import { useStructureStore } from "@/stores/structure";
+import Structure from "./Structure.vue";
+
+const structureStore = useStructureStore();
+
+const blocks = ref(<any[]>structureStore.blocks);
+
+const duplicateBlock = (index: number) => {
+  const duplicatedBlock = { ...blocks.value[index] };
+  blocks.value.splice(index + 1, 0, duplicatedBlock);
+};
+
+const deleteBlock = (index: number) => {
+  blocks.value.splice(index, 1);
+};
+</script>
+
 <template>
-  <main class="min-h-[300px]">
-    <section class="border border-dashed w-full h-auto">
-      <div class="flex items-center justify-center py-[40px]">
-        <div
-          class="w-[30px] font-[800] h-[30px] font-[800] border border-green-500 flex items-center justify-center rounded-[50%] text-center text-green-500 text-[20px]"
-        >
-          +
-        </div>
+  <main class="relative min-h-[100vh]">
+    <section class="flex justify-center items-center">
+      <div v-for="(item, index) in structureStore.blocks" :key="index">
+        <Structure :item="item" :index="index" />
       </div>
     </section>
   </main>
 </template>
-
-<script setup lang="ts"></script>
 
 <style></style>
