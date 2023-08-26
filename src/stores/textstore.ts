@@ -12,7 +12,7 @@ export const useTextStore = defineStore("textStore", {
       extensions: [
         StarterKit,
       ],
-    content: '<p>I’m running Tiptap with Vue.js. 🎉</p>',
+    content: '<p>Hello Text ... 😀</p>',
   })
   }),
   actions: {

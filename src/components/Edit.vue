@@ -19,7 +19,7 @@ const deleteBlock = (index: number) => {
 
 <template>
   <main class="relative min-h-[100vh]">
-    <section class="flex justify-center items-center">
+    <section class="flex justify-start items-start">
       <div v-for="(item, index) in structureStore.blocks" :key="index">
         <Structure :item="item" :index="index" />
       </div>
