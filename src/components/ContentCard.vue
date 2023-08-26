@@ -1,6 +1,28 @@
+<script>
+import { useSideBarStore } from "@/stores/sidebar";
+export default {
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+  },
+
+  setup(props) {
+    const store = useSideBarStore();
+    const showStyle = () => {
+      store.toggleEditorStyle(props.title);
+    };
+    return { showStyle };
+  },
+};
+</script>
 <template>
   <div class="border border-green-500 rounded-[5px] max-w-[100px] cursor-move">
-    <div class="py-[16px] px-[16px] flex flex-col items-center justify-center">
+    <div
+      class="py-[16px] px-[16px] flex flex-col items-center justify-center"
+      @click="showStyle()"
+    >
       <slot name="icon"></slot>
       <slot name="draggable"></slot>
 
@@ -10,14 +32,5 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-defineProps({
-  title: {
-    type: String,
-    default: 'Content type'
-  }
-})
-</script>
 
 <style></style>
