@@ -29,4 +29,3 @@ const toolsStore = useToolsStore();
 </script>
 
 <style></style>
-../stores/toolsbar

@@ -158,9 +158,6 @@ import { onMounted, ref } from "vue";
 import { useTextStore } from "@/stores/textstore";
 import { useStructureStore } from "@/stores/structure";
 
-import { Editor, EditorContent } from '@tiptap/vue-3'
-import StarterKit from "@tiptap/starter-kit";
-
 const textsStore = useTextStore();
 const structureStore = useStructureStore();
 

@@ -10,11 +10,7 @@ import StarterKit from "@tiptap/starter-kit";
 import {useTextStore} from "@/stores/textstore";
 
 const textsStore = useTextStore();
-  const editor = useEditor({
-    content: '<p>I’m running Tiptap with Vue.js. 🎉</p>',
-    extensions: [
-      StarterKit,
-    ],
-  })
+ 
+const editor = textsStore.editor
 
 </script>

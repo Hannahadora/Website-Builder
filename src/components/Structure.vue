@@ -4,7 +4,6 @@ import { useStructureStore } from "@/stores/structure";
 import { useImageStore } from "../stores/imagestore";
 import { useToolsStore } from "../stores/toolsbar";
 import ImageBlock from "./ImageEditor/ImageBlock.vue";
-import Quill from "./TextEditor/Quill.vue";
 import TipTap from "./TextEditor/TipTap.vue";
 
 import { useDraggable } from "@vueuse/core";
@@ -29,28 +28,12 @@ const el = ref<HTMLElement | null>(null);
 
 const text = ref("");
 
-// `style` will be a helper computed for `left: ?px; top: ?px;`
-// const { x, y, style } = useDraggable(el, {
-//   initialValue: { x: 40, y: 40 },
-// });
-
 const showContent = () => {
   toolsStore.toggleContent();
 };
-
-// const resize = () => useResizeObserver(el, (entries) => {
-//   const entry = entries[0];
-//   const { width, height } = entry.contentRect;
-//   text.value = `width: ${width}, height: ${height}`;
-// });
 </script>
 
 <template>
-  <!-- <div ref="el" :style="style"
-    style="position: fixed" class="border h-[200px] w-[200px]">
-    {{text}}
-  </div> -->
-  <!-- <textarea ref="el" class="resizer" disabled v-text="text" /> -->
 
   <div
     ref="el"
@@ -63,9 +46,8 @@ const showContent = () => {
     >
       +
     </button>
-    <div class="w-full h-full">
+    <div class="">
       <div v-if="item.type === 'text'" class="">
-        <!-- <Quill :content="item.content" /> -->
         <TipTap />
       </div>
       <div v-if="item.type === 'image'" class="w-full" >

@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { useStructureStore } from "./structure";
 
 export const useToolsStore = defineStore("toolsbar", {
   state: () => ({
@@ -17,6 +18,10 @@ export const useToolsStore = defineStore("toolsbar", {
       this.imageEditor = key === "image";
       this.buttonEditor = key === "button";
       this.content = false; // Set this to false only if no editor is active
+
+      if(this.textEditor === true) {
+        useStructureStore().addTextToBlock()
+      }
     },
     toggleContent() {
       this.content = !this.content;
