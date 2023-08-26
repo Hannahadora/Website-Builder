@@ -343,6 +343,11 @@
   "resolved" "https://registry.npmjs.org/@types/node/-/node-18.17.11.tgz"
   "version" "18.17.11"
 
+"@types/web-bluetooth@^0.0.17":
+  "integrity" "sha512-4p9vcSmxAayx72yn70joFoL44c9MO/0+iVEBIQXe3v2h2SiAsEIo/G5v6ObFWvNKRFjbrVadNf9LqEEZeQPzdA=="
+  "resolved" "https://registry.npmjs.org/@types/web-bluetooth/-/web-bluetooth-0.0.17.tgz"
+  "version" "0.0.17"
+
 "@vitejs/plugin-vue-jsx@^3.0.2":
   "integrity" "sha512-obF26P2Z4Ogy3cPp07B4VaW6rpiu0ue4OT2Y15UxT5BZZ76haUY9guOsZV3uWh/I6xc+VeiW+ZVabRE82FyzWw=="
   "resolved" "https://registry.npmjs.org/@vitejs/plugin-vue-jsx/-/plugin-vue-jsx-3.0.2.tgz"
@@ -519,6 +524,28 @@
   dependencies:
     "@volar/typescript" "~1.10.0"
     "@vue/language-core" "1.8.8"
+
+"@vueuse/core@^10.4.0":
+  "integrity" "sha512-8JnnTwiuzUqfiYIW8H4FKG/g5ZMKSE+9auoFUwUAkzhqUjy24VbMkNlDBWetQCimiptx7RAO6u1IS55H6+p1Tg=="
+  "resolved" "https://registry.npmjs.org/@vueuse/core/-/core-10.4.0.tgz"
+  "version" "10.4.0"
+  dependencies:
+    "@types/web-bluetooth" "^0.0.17"
+    "@vueuse/metadata" "10.4.0"
+    "@vueuse/shared" "10.4.0"
+    "vue-demi" ">=0.14.5"
+
+"@vueuse/metadata@10.4.0":
+  "integrity" "sha512-JNf9IR7ZBTDxWPfQlHhqBOv1VLO6ReTZi9HGY7RABjYHVpaEpjlHU7HpZDVOJGDa0gKITAbA2zMkNSBjKMcdaw=="
+  "resolved" "https://registry.npmjs.org/@vueuse/metadata/-/metadata-10.4.0.tgz"
+  "version" "10.4.0"
+
+"@vueuse/shared@10.4.0":
+  "integrity" "sha512-52asvLf5cbAS/h6xWjqoY4MgjxmFjnVNf/nA8BP7RbeIrIGcf+BZbeOcVo+92byqArXEJiBxptXpufQvbwJL/w=="
+  "resolved" "https://registry.npmjs.org/@vueuse/shared/-/shared-10.4.0.tgz"
+  "version" "10.4.0"
+  dependencies:
+    "vue-demi" ">=0.14.5"
 
 "ansi-styles@^3.2.1":
   "integrity" "sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA=="
@@ -1681,6 +1708,16 @@
     "get-intrinsic" "^1.0.2"
     "object-inspect" "^1.9.0"
 
+"sortablejs@^1.14.0":
+  "integrity" "sha512-bv9qgVMjUMf89wAvM6AxVvS/4MX3sPeN0+agqShejLU5z5GX4C75ow1O2e5k4L6XItUyAK3gH6AxSbXrOM5e8w=="
+  "resolved" "https://registry.npmjs.org/sortablejs/-/sortablejs-1.15.0.tgz"
+  "version" "1.15.0"
+
+"sortablejs@1.10.2":
+  "integrity" "sha512-YkPGufevysvfwn5rfdlGyrGjt7/CRHwvRPogD/lC+TnvcN29jDpCifKP+rBqf+LRldfXSTh+0CGLcSg0VIxq3A=="
+  "resolved" "https://registry.npmjs.org/sortablejs/-/sortablejs-1.10.2.tgz"
+  "version" "1.10.2"
+
 "source-map-js@^1.0.2":
   "integrity" "sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw=="
   "resolved" "https://registry.npmjs.org/source-map-js/-/source-map-js-1.0.2.tgz"
@@ -1933,6 +1970,11 @@
   "resolved" "https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.5.tgz"
   "version" "0.14.5"
 
+"vue-draggable-next@^2.2.1":
+  "integrity" "sha512-EAMS1IRHF0kZO0o5PMOinsQsXIqsrKT1hKmbICxG3UEtn7zLFkLxlAtajcCcUTisNvQ6TtCB5COjD9a1raNADw=="
+  "resolved" "https://registry.npmjs.org/vue-draggable-next/-/vue-draggable-next-2.2.1.tgz"
+  "version" "2.2.1"
+
 "vue-router@^4.2.4":
   "integrity" "sha512-9PISkmaCO02OzPVOMq2w82ilty6+xJmQrarYZDkjZBfl4RvYAlt4PKnEX21oW4KTtWfa9OuO/b3qk1Od3AEdCQ=="
   "resolved" "https://registry.npmjs.org/vue-router/-/vue-router-4.2.4.tgz"
@@ -1957,7 +1999,7 @@
     "@vue/typescript" "1.8.8"
     "semver" "^7.3.8"
 
-"vue@^2.6.14 || ^3.3.0", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.3.4", "vue@3.3.4":
+"vue@^2.6.14 || ^3.3.0", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.2.0", "vue@^3.2.2", "vue@^3.2.25", "vue@^3.3.4", "vue@3.3.4":
   "integrity" "sha512-VTyEYn3yvIeY1Py0WaYGZsXnz3y5UnGi62GjVEqvEGPl6nxbOrCXbVOTQWBEJUqAyTUk2uJ5JLVnYJ6ZzGbrSw=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.3.4.tgz"
   "version" "3.3.4"
@@ -1967,6 +2009,13 @@
     "@vue/runtime-dom" "3.3.4"
     "@vue/server-renderer" "3.3.4"
     "@vue/shared" "3.3.4"
+
+"vuedraggable@^2.24.3":
+  "integrity" "sha512-6/HDXi92GzB+Hcs9fC6PAAozK1RLt1ewPTLjK0anTYguXLAeySDmcnqE8IC0xa7shvSzRjQXq3/+dsZ7ETGF3g=="
+  "resolved" "https://registry.npmjs.org/vuedraggable/-/vuedraggable-2.24.3.tgz"
+  "version" "2.24.3"
+  dependencies:
+    "sortablejs" "1.10.2"
 
 "which-boxed-primitive@^1.0.2":
   "integrity" "sha512-bwZdv0AKLpplFY2KZRX6TvyuN7ojjr7lwkg6ml0roIy9YeuSr7JS372qlNW18UQYzgYK9ziGcerWqZOmEn9VNg=="
