@@ -1,8 +1,5 @@
 <template>
   <section>
-  <div class="mb-[30px]">
-    <editor-content :editor="editor" />
-  </div>
     <!-- <div class="flex flex-col items-center justify-center mt-[80px]">
       <p
         @click="addTextBlock('Header')"

@@ -11,6 +11,9 @@
         <div v-if="toolsStore.textEditor">
           <TextStyle />
         </div>
+        <div v-if="toolsStore.structureEditor">
+          <LayoutStyle />
+        </div>
       </div>
       <div v-else class="flex items-center justify-center h-screen">
         <p class="text-[12px] font-light italic text-center">
@@ -25,6 +28,8 @@
 import { useToolsStore } from "../stores/toolsbar";
 import PredefinedImages from "./ImageEditor/PredefinedImages.vue";
 import TextStyle from "./TextEditor/TextStyle.vue";
+import LayoutStyle from "./LayoutEditor/LayoutStyle.vue";
+
 const toolsStore = useToolsStore();
 </script>
 

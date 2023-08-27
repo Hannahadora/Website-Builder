@@ -22,6 +22,13 @@ export const useStructureStore = defineStore("structureStore", {
     },
     addTextToBlock() {
       this.blocks.push({ type: "text", content: useTextStore().content || this.content });
+    },
+    duplicateBlock(index: number) {
+      const duplicatedBlock = { ...this.blocks[index] };
+      this.blocks.splice(index + 1, 0, duplicatedBlock);
+    },
+    deleteBlock(index: number) {
+      this.blocks.splice(index, 1);
     }
   },
 });

@@ -1,9 +1,8 @@
 <template>
   <div ref="imageEl"
-    class="image-block h-[200px] w-full"
+    class="image-block h-[100vh] w-full"
     :style="{ backgroundImage: `url(${selectedImage})` }"
   >
-    <div class="resize-icon"></div>
   </div>
 </template>
 
