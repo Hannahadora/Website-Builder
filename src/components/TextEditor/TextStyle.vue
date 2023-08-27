@@ -27,6 +27,16 @@
       </p>
     </div> -->
 
+    <div class="mb-[30px]">
+      <p class="text-[13px]">Text color</p>
+      <div
+        @click="showTextColorPallete = !showTextColorPallete"
+        :class="`cursor-pointer px-[40px] py-[20px]`"
+        :style="`background-color: ${textColor}`"
+      ></div>
+      <ColorPicker v-if="showTextColorPallete" @getColor="updateTextColor" />
+    </div>
+
     <div class="grid grid-cols-2 gap-[16px] items-start">
       <button class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().toggleBold().run()"
@@ -154,9 +164,13 @@
 import { onMounted, ref } from "vue";
 import { useTextStore } from "@/stores/textstore";
 import { useStructureStore } from "@/stores/structure";
+import ColorPicker from "../ColorPicker.vue";
 
 const textsStore = useTextStore();
 const structureStore = useStructureStore();
+
+const textColor = ref("#000000");
+const showTextColorPallete = ref(false);
 
 const emit = defineEmits();
 
@@ -165,6 +179,11 @@ const editor = textsStore.editor
 const addTextBlock = (style: string) => {
   textsStore.setDefautltTextStyle(style);
   structureStore.addTextToBlock();
+};
+
+const updateTextColor = (color: any) => {
+  textColor.value = color;
+  structureStore.applyTextColor(textColor.value);
 };
 
 </script>

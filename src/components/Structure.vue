@@ -5,8 +5,7 @@ import { useImageStore } from "../stores/imagestore";
 import { useToolsStore } from "../stores/toolsbar";
 import ImageBlock from "./ImageEditor/ImageBlock.vue";
 import TipTap from "./TextEditor/TipTap.vue";
-import VueResizable from 'vue-resizable'
-
+import VueResizable from "vue-resizable";
 
 defineProps({
   item: {
@@ -26,26 +25,69 @@ const toolsStore = useToolsStore();
 const el = ref<HTMLElement | null>(null);
 
 const showActions = ref<Boolean>(false);
-
 </script>
 
 <template>
-  <VueResizable dragElements="" :fitParent="true" :active="['r', 'rb', 'b', 'lb', 'l', 'lt', 't', 'rt']" :minW="100" :minH="100" >
-  <div @dblclick="showActions = !showActions" ref="el" :class="`relative border focus:border-dashed focus:border-red-700 z-[${index + 1}]`">
-    <div v-if="showActions" class="absolute top-0 right-0 bg-green-300 p-[8px] w-[60px] z-[20]">
-      <div class="flex items-center justify-end gap-[8px] cursor-pointer">
-        <img class="w-[16px] h-[16px]" title="delete" @click="structureStore.deleteBlock(index)" src="/images/delete_icon.svg" alt="delete">
-        <img class="w-[16px] h-[16px]" title="duplicate" @click="structureStore.duplicateBlock(index)" src="/images/duplicate_icon.svg" alt="duplicate">
+  <VueResizable
+    dragElements=""
+    :fitParent="true"
+    :active="['r', 'rb', 'b', 'lb', 'l', 'lt', 't', 'rt']"
+    :minW="100"
+    :minH="100"
+  >
+    <div
+      @dblclick="showActions = !showActions"
+      ref="el"
+      :class="`relative focus:outline-none focus:border-dashed focus:border-red-700 z-[${
+        index + 1
+      }]`"
+    >
+      <div
+        v-if="showActions"
+        class="absolute top-0 right-0 bg-green-300 p-[8px] w-[60px] z-[20]"
+      >
+        <div class="flex items-center justify-end gap-[8px] cursor-pointer">
+          <img
+            class="w-[16px] h-[16px]"
+            title="delete"
+            @click="structureStore.deleteBlock(index)"
+            src="/images/delete_icon.svg"
+            alt="delete"
+          />
+          <img
+            class="w-[16px] h-[16px]"
+            title="duplicate"
+            @click="structureStore.duplicateBlock(index)"
+            src="/images/duplicate_icon.svg"
+            alt="duplicate"
+          />
+        </div>
       </div>
+      <TipTap
+        v-if="item.type === 'text'"
+        class="w-auto"
+        :style="{
+          color: item.textColor,
+        }"
+      />
+      <ImageBlock
+        v-if="item.type === 'image'"
+        class="w-auto"
+        :selectedImage="item.content"
+      />
+      <div
+        v-if="item.type === 'layout'"
+        contenteditable
+        :style="{
+          background: item.backgroundColor,
+          backgroundImage: `url(${item.backgrounddImage})`,
+          border: item.borderWidth > 0 ? `${item.borderWidth}px solid ${item.borderColor}`: 'none',
+          color: item.textColor,
+        }"
+      >
+        {{ item.content }}
+      </div>
+      <!-- <div class="resize-icon"></div> -->
     </div>
-    <TipTap v-if="item.type === 'text'" class="w-auto" />
-    <ImageBlock
-      v-if="item.type === 'image'"
-      class="w-auto"
-      :selectedImage="item.content"
-    />
-
-    <!-- <div class="resize-icon"></div> -->
-  </div>
-</VueResizable>
+  </VueResizable>
 </template>

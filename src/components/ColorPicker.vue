@@ -22,10 +22,12 @@ const suckerCanvas = ref(null);
 const suckerArea = ref([]);
 const isSucking = ref<Boolean>(false);
 
+const emit = defineEmits()
+
 const changeColor = (color: any) => {
   const { r, g, b, a } = color.rgba;
   selectedColor.value = `rgba(${r}, ${g}, ${b}, ${a})`;
-  
+  emit('getColor', selectedColor.value)
 };
 const openSucker = (isOpen: Boolean) => {
   if (isOpen) {

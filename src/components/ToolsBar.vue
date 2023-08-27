@@ -15,7 +15,11 @@
               <LayoutIcon class="w-[20px] h-[20px]" />
             </template>
           </ContentCard>
-          <ContentCard class="mb-[10px]" title="text">
+          <ContentCard
+            class="mb-[10px]"
+            title="text"
+            @click="structure.addTextToBlock"
+          >
             <template #icon>
               <Text class="w-[20px] h-[20px]" />
             </template>
@@ -48,7 +52,7 @@ import { useStructureStore } from "@/stores/structure";
 import { useToolsStore } from "../stores/toolsbar";
 
 const structure = useStructureStore();
-const toolsStore = useToolsStore()
+const toolsStore = useToolsStore();
 
 onMounted(() => {
   // console.log("textref", textRef);
