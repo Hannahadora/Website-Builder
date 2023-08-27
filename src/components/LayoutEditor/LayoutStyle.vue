@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full md:block flex md:overflow-x-hidden overflow-x-scroll items-start gap-[10px] md:mt-[80px] p-[10px]">
+  <section class="w-full md:block flex md:overflow-x-hidden overflow-x-scroll items-start gap-[10px] p-[10px]">
     <div class="md:mb-[30px] mb-[10px]">
       <p class="text-[13px]">Background color</p>
       <div

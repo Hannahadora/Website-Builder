@@ -15,10 +15,10 @@ const showStyle = (title: string) => {
 </script>
 <template>
   <div
-    class="border border-green-500 rounded-[5px] max-w-[50px] cursor-pointer"
+    class="border border-green-500 rounded-[5px] max-w-[70px] cursor-pointer"
   >
     <div
-      class="py-[4px] px-[4px] flex flex-col items-center justify-center"
+      class="py-[5px] px-[5px] flex flex-col items-center justify-center"
       @click="showStyle(title)"
     >
       <slot name="icon"></slot>

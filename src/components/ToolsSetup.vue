@@ -1,9 +1,11 @@
 <template>
-  <section class="bg-[#fff] md:h-screen md:overflow-y-scroll md:overflow-x-hidden w-full">
-    <div class="p-[10px]">
+  <section class="bg-[#fff] md:p-[20px] p-[10px] md:h-screen md:overflow-y-scroll md:overflow-x-hidden w-full">
       <div v-if="toolsStore.selectedTool">
-        <p class="capitalize text-center text-[12px] font-bold md:mb-[24px] mb-[12px]">
+        <p class="capitalize text-center text-[14px] font-bold md:mb-[24px] mb-[12px]">
           {{ toolsStore.selectedTool }}
+        </p>
+        <p class="capitalize text-center text-[14px] md:pb-[24px] pb-[12px] border-b mb-[12px]">
+          Default Settings
         </p>
         <div v-if="toolsStore.imageEditor">
           <PredefinedImages />
@@ -20,7 +22,6 @@
           * Select a tools type by clicking on the desired tool
         </p>
       </div>
-    </div>
   </section>
 </template>
 
