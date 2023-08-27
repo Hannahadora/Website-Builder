@@ -1,11 +1,11 @@
 <template>
-  <section class="bg-[#E4E4E4] p-[20px] h-screen">
+  <section class="bg-[#E4E4E4] md:p-[20px] p-[10px] md:h-screen">
     <div class="flex flex-col items-center justify-center">
       <div class="mb-[20px]">
         <h3 class="text-[16px] font-[600]">Tools</h3>
       </div>
       <div>
-        <div class="">
+        <div class="md:block md:w-auto w-full flex gap-[20px] items-center justify-between">
           <ContentCard
             class="mb-[10px]"
             title="layout"

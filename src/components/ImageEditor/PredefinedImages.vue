@@ -3,11 +3,11 @@
     <div class="image-modal">
       <p>Upload files</p>
       <input type="file" @change="uploadToPredefined" />
-      <div class="mt-10">
-        <div class="w-full">
+      <div class="md:mt-10">
+        <div class="w-full md:block flex md:overflow-x-hidden overflow-x-scroll items-center gap-[10px]">
           <div v-for="(image, i) in predefinedImages" :key="i">
             <img
-              class="cursor-pointer border w-full h-[150px] rounded"
+              class="cursor-pointer border md:w-full w-[50px] h-[50px] md:h-[150px] h-[50px] rounded"
               @click="addImageBlock(image)"
               :src="image"
               alt=""

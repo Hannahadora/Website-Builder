@@ -27,7 +27,7 @@
       </p>
     </div> -->
 
-    <div class="mb-[30px]">
+    <div class="md:mb-[30px] mb:[16px]">
       <p class="text-[13px]">Text color</p>
       <div
         @click="showTextColorPallete = !showTextColorPallete"
@@ -37,7 +37,7 @@
       <ColorPicker v-if="showTextColorPallete" @getColor="updateTextColor" />
     </div>
 
-    <div class="grid grid-cols-2 gap-[16px] items-start">
+    <div class="md:grid grid-cols-2 flex md:overflow-x-hidden overflow-x-scroll items-center gap-[16px] items-start">
       <button class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().toggleBold().run()"
         :disabled="!editor.can().chain().focus().toggleBold().run()"

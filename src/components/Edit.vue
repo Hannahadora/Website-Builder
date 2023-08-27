@@ -16,7 +16,7 @@ const setStructure = (index: any, item: any) => {
 </script>
 
 <template>
-  <main class="relative min-h-[100vh]">
+  <main class="relative min-h-[100vh] h-[100%]">
     <section class="w-full">
       <div class="" v-for="(item, index) in structureStore.blocks" :key="index">
         <Structure @click="setStructure(index, item)" :item="item" :index="index" />
