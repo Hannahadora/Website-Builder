@@ -9,7 +9,10 @@ interface IBlock {
   borderColor: string,
   backgroundImage: string,
   borderWidth: number,
-  textColor: string
+  textColor: string,
+  fontSize: number,
+  grids?: number,
+  textAlign?: string
 }
 
 export const useStructureStore = defineStore("structureStore", {
@@ -29,13 +32,25 @@ export const useStructureStore = defineStore("structureStore", {
       this.selectedBlockIndex = index
     },
     addElement() {
-      this.blocks.push({ type: "layout", content: this.content, backgroundColor: "", borderColor: "", backgroundImage: "", borderWidth: 0, textColor: "" });
+      this.blocks.push({
+        type: "layout", content: this.content, backgroundColor: "", borderColor: "", backgroundImage: "", borderWidth: 0, textColor: "",
+        fontSize: 16, grids: 1, textAlign: ""
+      });
+    },
+    updateGrid(grids: number) {
+      this.selectedBlock.grids = grids;
     },
     addImageToBlock() {
-      this.blocks.push({ type: "image", content: useImageStore().image, backgroundColor: "", borderColor: "", backgroundImage: "", borderWidth: 0, textColor: "" });
+      this.blocks.push({
+        type: "image", content: useImageStore().image, backgroundColor: "", borderColor: "", backgroundImage: "", borderWidth: 0, textColor: "",
+        fontSize: 16
+      });
     },
     addTextToBlock() {
-      this.blocks.push({ type: "text", content: useTextStore().content || this.content, backgroundColor: "", borderColor: "", backgroundImage: "", borderWidth: 0, textColor: "" });
+      this.blocks.push({
+        type: "text", content: useTextStore().content || this.content, backgroundColor: "", borderColor: "", backgroundImage: "", borderWidth: 0, textColor: "",
+        fontSize: 16, textAlign: ""
+      });
     },
     duplicateBlock(index: number) {
       const duplicatedBlock = { ...this.blocks[index] };
@@ -56,8 +71,14 @@ export const useStructureStore = defineStore("structureStore", {
     applyBorderWidth(width: number) {
       this.selectedBlock.borderWidth = width;
     },
+    applyFontSize(size: number) {
+      this.selectedBlock.fontSize = size;
+    },
     applyBackgroundImage(image: string) {
       this.selectedBlock.backgroundImage = image;
+    },
+    applyTextAlign(key: string) {
+      this.selectedBlock.textAlign = key;
     }
   },
 });

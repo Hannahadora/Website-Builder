@@ -16,6 +16,19 @@
         <div v-if="toolsStore.structureEditor">
           <LayoutStyle />
         </div>
+        <div v-if="toolsStore.sectionEditor">
+          <div
+            class="cursor-pointer w-full p-[10px] border rounded mb-[16px] hover:border-green-500"
+            v-for="(item, index) in structureStore.blocks"
+            :key="index"
+            @Click="structureStore.selectBlock(index); toolsStore.toggleEditorStyle(item.type)"
+          >
+          <p class="mb-[8px] font-medium italics font-poppins text-[12px] capitalize">{{ index + 1 }}. <span>{{ item.type }}</span></p>
+          
+          <p v-if="item.type === 'text'" class="overflow-ellipsis">{{ item.content }}</p>
+          <img v-if="item.type === 'image'" :src="item.content" class="w-full h-[70px]"/>
+          </div>
+        </div>
       </div>
       <div v-else class="flex items-center justify-center">
         <p class="text-[12px] font-light italic text-center">
@@ -30,8 +43,30 @@ import { useToolsStore } from "../stores/toolsbar";
 import PredefinedImages from "./ImageEditor/PredefinedImages.vue";
 import TextStyle from "./TextEditor/TextStyle.vue";
 import LayoutStyle from "./LayoutEditor/LayoutStyle.vue";
+import { useStructureStore } from "../stores/structure";
 
 const toolsStore = useToolsStore();
+const structureStore = useStructureStore()
 </script>
 
-<style></style>
+<style scoped>
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(6, 112, 6);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #8be873;
+}
+</style>

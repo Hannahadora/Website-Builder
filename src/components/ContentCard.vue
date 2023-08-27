@@ -15,7 +15,7 @@ const showStyle = (title: string) => {
 </script>
 <template>
   <div
-    class="border border-green-500 rounded-[5px] max-w-[70px] cursor-pointer"
+    class="border border-green-700 hover:border-green-900 rounded-[5px] max-w-[70px] cursor-pointer"
   >
     <div
       class="py-[5px] px-[5px] flex flex-col items-center justify-center"
@@ -24,7 +24,7 @@ const showStyle = (title: string) => {
       <slot name="icon"></slot>
       <slot name="draggable"></slot>
 
-      <h6 class="text-[10px] mt-[4px] text-[#000] text-center">
+      <h6 class="text-[10px] mt-[4px] font-medium capitalize text-[#000] text-center">
         {{ title }}
       </h6>
     </div>

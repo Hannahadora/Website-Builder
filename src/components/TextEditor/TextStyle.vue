@@ -37,124 +37,186 @@
       <ColorPicker v-if="showTextColorPallete" @getColor="updateTextColor" />
     </div>
 
-    <div class="md:grid grid-cols-2 flex md:overflow-x-hidden overflow-x-scroll items-center gap-[16px] items-start">
-      <button class="font-poppins p-[10px] text-[12px] border"
+    <div class="md:mb-[30px] mb-[10px]">
+      <p class="text-[13px]">Font size</p>
+      <input
+        @change="updateFontSize"
+        v-model="fontSize"
+        type="number"
+        class="md:w-full w-[50px] h-[50px] md:px-[20px] px-[10px] py-[8px] border"
+      />
+    </div>
+
+    <div class="md:mb-[30px] mb-[10px]">
+      <p class="text-[13px]">Text align</p>
+      <select @change="updateTextAlign" class="md:w-full w-[50px] h-[50px] md:px-[20px] px-[10px] py-[8px] border" name="" id="" v-model="textAlign">
+      <option value="left" >left</option>
+      <option value="right">right</option>
+      <option value="center">center</option>
+      </select>
+    </div>
+
+    <div
+      class="md:grid lg:grid-cols-2 flex md:overflow-x-hidden overflow-x-scroll items-center gap-[16px] items-start"
+    >
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
+        @click="editor.chain().focus().undo().run()"
+        :disabled="!editor.can().chain().focus().undo().run()"
+      >
+        undo
+      </button>
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
+        @click="editor.chain().focus().redo().run()"
+        :disabled="!editor.can().chain().focus().redo().run()"
+      >
+        redo
+      </button>
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().toggleBold().run()"
         :disabled="!editor.can().chain().focus().toggleBold().run()"
         :class="{ 'bg-black text-white': editor.isActive('bold') }"
       >
         bold
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border"
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().toggleItalic().run()"
         :disabled="!editor.can().chain().focus().toggleItalic().run()"
         :class="{ 'bg-black text-white': editor.isActive('italic') }"
       >
         italic
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border"
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().toggleStrike().run()"
         :disabled="!editor.can().chain().focus().toggleStrike().run()"
         :class="{ 'bg-black text-white': editor.isActive('strike') }"
       >
         strike
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border"
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().toggleCode().run()"
         :disabled="!editor.can().chain().focus().toggleCode().run()"
         :class="{ 'bg-black text-white': editor.isActive('code') }"
       >
         code
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border" @click="editor.chain().focus().unsetAllMarks().run()">
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
+        @click="editor.chain().focus().unsetAllMarks().run()"
+      >
         clear marks
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border" @click="editor.chain().focus().clearNodes().run()">
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
+        @click="editor.chain().focus().clearNodes().run()"
+      >
         clear nodes
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border"
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().setParagraph().run()"
         :class="{ 'bg-black text-white': editor.isActive('paragraph') }"
       >
         paragraph
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border"
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
-        :class="{ 'bg-black text-white': editor.isActive('heading', { level: 1 }) }"
+        :class="{
+          'bg-black text-white': editor.isActive('heading', { level: 1 }),
+        }"
       >
         h1
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border"
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
-        :class="{ 'bg-black text-white': editor.isActive('heading', { level: 2 }) }"
+        :class="{
+          'bg-black text-white': editor.isActive('heading', { level: 2 }),
+        }"
       >
         h2
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border"
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
-        :class="{ 'bg-black text-white': editor.isActive('heading', { level: 3 }) }"
+        :class="{
+          'bg-black text-white': editor.isActive('heading', { level: 3 }),
+        }"
       >
         h3
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border"
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().toggleHeading({ level: 4 }).run()"
-        :class="{ 'bg-black text-white': editor.isActive('heading', { level: 4 }) }"
+        :class="{
+          'bg-black text-white': editor.isActive('heading', { level: 4 }),
+        }"
       >
         h4
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border"
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().toggleHeading({ level: 5 }).run()"
-        :class="{ 'bg-black text-white': editor.isActive('heading', { level: 5 }) }"
+        :class="{
+          'bg-black text-white': editor.isActive('heading', { level: 5 }),
+        }"
       >
         h5
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border"
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().toggleHeading({ level: 6 }).run()"
-        :class="{ 'bg-black text-white': editor.isActive('heading', { level: 6 }) }"
+        :class="{
+          'bg-black text-white': editor.isActive('heading', { level: 6 }),
+        }"
       >
         h6
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border"
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().toggleBulletList().run()"
         :class="{ 'bg-black text-white': editor.isActive('bulletList') }"
       >
         bullet list
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border"
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().toggleOrderedList().run()"
         :class="{ 'bg-black text-white': editor.isActive('orderedList') }"
       >
         ordered list
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border"
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().toggleCodeBlock().run()"
         :class="{ 'bg-black text-white': editor.isActive('codeBlock') }"
       >
         code block
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border"
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().toggleBlockquote().run()"
         :class="{ 'bg-black text-white': editor.isActive('blockquote') }"
       >
         blockquote
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border" @click="editor.chain().focus().setHorizontalRule().run()">
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
+        @click="editor.chain().focus().setHorizontalRule().run()"
+      >
         horizontal rule
       </button>
-      <button class="font-poppins p-[10px] text-[12px] border" @click="editor.chain().focus().setHardBreak().run()">
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
+        @click="editor.chain().focus().setHardBreak().run()"
+      >
         hard break
-      </button>
-      <button class="font-poppins p-[10px] text-[12px] border"
-        @click="editor.chain().focus().undo().run()"
-        :disabled="!editor.can().chain().focus().undo().run()"
-      >
-        undo
-      </button>
-      <button class="font-poppins p-[10px] text-[12px] border"
-        @click="editor.chain().focus().redo().run()"
-        :disabled="!editor.can().chain().focus().redo().run()"
-      >
-        redo
       </button>
     </div>
   </section>
@@ -169,12 +231,14 @@ import ColorPicker from "../ColorPicker.vue";
 const textsStore = useTextStore();
 const structureStore = useStructureStore();
 
+const fontSize = ref(16);
+const textAlign = ref("left");
 const textColor = ref("#000000");
 const showTextColorPallete = ref(false);
 
 const emit = defineEmits();
 
-const editor = textsStore.editor
+const editor = textsStore.editor;
 
 const addTextBlock = (style: string) => {
   textsStore.setDefautltTextStyle(style);
@@ -186,6 +250,14 @@ const updateTextColor = (color: any) => {
   structureStore.applyTextColor(textColor.value);
 };
 
+
+const updateTextAlign = () => {
+  structureStore.applyTextAlign(textAlign.value);
+};
+
+const updateFontSize = () => {
+  structureStore.applyFontSize(fontSize.value);
+};
 </script>
 
 <style scoped>

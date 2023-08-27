@@ -9,6 +9,7 @@ export const useToolsStore = defineStore("toolsbar", {
     structureEditor: false,
     imageEditor: false,
     buttonEditor: false,
+    sectionEditor: false,
   }),
   actions: {
     toggleEditorStyle(key: any) {
@@ -17,6 +18,7 @@ export const useToolsStore = defineStore("toolsbar", {
       this.structureEditor = key === "layout";
       this.imageEditor = key === "image";
       this.buttonEditor = key === "button";
+      this.sectionEditor = key === "section";
       this.content = false; // Set this to false only if no editor is active
     },
     toggleContent() {

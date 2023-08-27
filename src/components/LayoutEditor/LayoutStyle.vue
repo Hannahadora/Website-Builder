@@ -1,6 +1,16 @@
 <template>
   <section class="w-full md:block flex md:overflow-x-hidden overflow-x-scroll items-start gap-[10px] p-[10px]">
     <div class="md:mb-[30px] mb-[10px]">
+      <p class="text-[13px]">No of Grids</p>
+      <input
+        @change="structureStore.updateGrid(noOfGrid)"
+        v-model="noOfGrid"
+        type="number"
+        class="md:w-full w-[50px] h-[50px] md:px-[20px] px-[10px] py-[8px] border"
+      />
+    </div>
+
+    <div class="md:mb-[30px] mb-[10px]">
       <p class="text-[13px]">Background color</p>
       <div
         @click="showBgPallete = !showBgPallete"
@@ -29,6 +39,25 @@
         class="md:w-full w-[50px] h-[50px] md:px-[20px] px-[10px] py-[8px] border"
       />
     </div>
+
+    <div class="md:mb-[30px] mb-[10px]">
+      <p class="text-[13px]">Font Size</p>
+      <input
+        @change="updateFontSize"
+        v-model="fontSize"
+        type="number"
+        class="md:w-full w-[50px] h-[50px] md:px-[20px] px-[10px] py-[8px] border"
+      />
+    </div>
+
+    <div class="md:mb-[30px] mb-[10px]">
+      <p class="text-[13px]">Text align</p>
+      <select @change="updateTextAlign" class="md:w-full w-[50px] h-[50px] md:px-[20px] px-[10px] py-[8px] border" name="" id="" v-model="textAlign">
+      <option value="left" >left</option>
+      <option value="right">right</option>
+      <option value="center">center</option>
+      </select>
+    </div>
     
     <div class="md:mb-[30px] mb-[10px]">
       <p class="text-[13px]">Text color</p>
@@ -51,6 +80,9 @@ const bgColor = ref("#E5E5E5");
 const borderColor = ref("#000000");
 const textColor = ref("#000000");
 const borderWidth = ref(0);
+const noOfGrid = ref(1);
+const fontSize = ref(16);
+const textAlign = ref("left");
 const showBgPallete = ref(false);
 const showBorderPallete = ref(false);
 const showTextColorPallete = ref(false);
@@ -71,6 +103,13 @@ const updateTextColor = (color: any) => {
 };
 const updateBorderWidth = () => {
   structureStore.applyBorderWidth(borderWidth.value);
+};
+const updateFontSize = () => {
+  structureStore.applyFontSize(fontSize.value);
+};
+
+const updateTextAlign = () => {
+  structureStore.applyTextAlign(textAlign.value);
 };
 </script>
 

@@ -1,11 +1,20 @@
 <template>
-  <section class="bg-[#E4E4E4] md:p-[20px] p-[10px] md:h-screen">
+  <section class="bg-green-500 md:p-[20px] p-[10px] md:h-screen">
     <div class="flex flex-col items-center justify-center">
       <div class="mb-[20px]">
         <h3 class="text-[16px] font-[600]">Tools</h3>
       </div>
       <div>
         <div class="md:block md:w-auto w-full flex gap-[20px] items-center justify-between">
+          <ContentCard
+            class="mb-[10px]"
+            title="sections"
+            @click="toolsStore.toggleEditorStyle('section')"
+          >
+            <template #icon>
+              <LayoutIcon class="w-[20px] h-[20px]" />
+            </template>
+          </ContentCard>
           <ContentCard
             class="mb-[10px]"
             title="layout"
@@ -59,4 +68,24 @@ onMounted(() => {
 });
 </script>
 
-<style></style>
+<style scoped>
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+</style>

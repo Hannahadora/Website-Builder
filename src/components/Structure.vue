@@ -32,15 +32,16 @@ const showActions = ref<Boolean>(false);
     dragElements=""
     :fitParent="true"
     :active="['r', 'rb', 'b', 'lb', 'l', 'lt', 't', 'rt']"
-    :minW="100"
-    :minH="100"
+    :minW="200"
+    :minH="200"
   >
     <div
       @dblclick="showActions = !showActions"
       ref="el"
-      :class="`relative focus:outline-none focus:border-dashed focus:border-red-700 z-[${
-        index + 1
-      }]`"
+      :class="`h-[200px] w-[full] ${
+        structureStore.selectedBlockIndex === index &&
+        'border border-dashed border-red-700 p-[10px]'
+      } relative p-[0px] z-[${index + 1}]`"
     >
       <div
         v-if="showActions"
@@ -68,26 +69,54 @@ const showActions = ref<Boolean>(false);
         class="w-auto"
         :style="{
           color: item.textColor,
+          fontSize: `${item.fontSize}px`,
+          textAlign: item.textAlign
         }"
       />
       <ImageBlock
         v-if="item.type === 'image'"
         class="w-auto"
         :selectedImage="item.content"
+        :style="{
+          color: item.textColor,
+          fontSize: `${item.fontSize}px`,
+          alignText: item.textAlign
+        }"
       />
       <div
         v-if="item.type === 'layout'"
-        contenteditable
+        :class="`text-[${item.textAlign}] focus:outline-none h-full  grid grid-cols-${item.grids}`"
         :style="{
           background: item.backgroundColor,
-          backgroundImage: `url(${item.backgrounddImage})`,
-          border: item.borderWidth > 0 ? `${item.borderWidth}px solid ${item.borderColor}`: 'none',
+          backgroundImage: `url(${item.backgroundImage})`,
+          border:
+            item.borderWidth > 0
+              ? `${item.borderWidth}px solid ${item.borderColor}`
+              : 'none',
           color: item.textColor,
+          fontSize: `${item.fontSize}px`,
         }"
       >
-        {{ item.content }}
+        <p v-for="n in item.grids" :key="n" 
+      :class="`${
+       item.grids > 1 &&
+        'border border-dashed'
+      }`">
+          {{ item.content }}
+        </p>
       </div>
       <!-- <div class="resize-icon"></div> -->
     </div>
   </VueResizable>
 </template>
+
+<style scoped>
+.block-wrapper {
+  padding: 0;
+  border: none;
+}
+.block-wrapper:focus {
+  border: 1px dashed red;
+  padding: 10px;
+}
+</style>

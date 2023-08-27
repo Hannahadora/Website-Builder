@@ -12,7 +12,7 @@ export const useImageStore = defineStore("imagestore", {
 
     actions: {
         addToPredifinedImages(image: string) {
-            this.predefinedImages.push(image)
+            this.predefinedImages.unshift(image)
         },
         selectImage(image: string) {
             this.image = image

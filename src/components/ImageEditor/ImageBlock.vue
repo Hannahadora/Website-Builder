@@ -1,6 +1,6 @@
 <template>
-  <div ref="imageEl"
-    class="image-block h-[100vh] w-full"
+  <div contenteditable ref="imageEl"
+    class="image-block h-[100%] w-full"
     :style="{ backgroundImage: `url(${selectedImage})` }"
   >
   </div>

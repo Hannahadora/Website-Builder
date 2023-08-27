@@ -1,10 +1,46 @@
 <template>
   <section>
     <div class="image-modal">
-      <p>Upload files</p>
-      <input type="file" @change="uploadToPredefined" />
+      <div class="md:mb-[20px] mb-[12px]">
+        <label
+          for="uplaod-images"
+          class="border border-dashed flex items-center justify-center md:w-full w-[50px] h-[50px] md:h-[150px] h-[50px] rounded"
+          id="dropcontainer"
+          @change="uploadToPredefined"
+        >
+          <span class="text-[12px] font-bold text-green-500 cursor-pointer"
+            >Upload Image</span
+          >
+          <input type="file" id="uplaod-images" class="hidden" />
+        </label>
+      </div>
+
+      <div class="md:mb-[30px] mb:[16px]">
+        <p class="text-[13px]">Text color</p>
+        <div
+          @click="showTextColorPallete = !showTextColorPallete"
+          :class="`cursor-pointer px-[40px] py-[20px]`"
+          :style="`background-color: ${textColor}`"
+        ></div>
+        <ColorPicker v-if="showTextColorPallete" @getColor="updateTextColor" />
+      </div>
+
+
+
+      <div class="md:mb-[30px] mb-[10px]">
+        <p class="text-[13px]">Font Size</p>
+        <input
+          @change="updateFontSize"
+          v-model="fontSize"
+          type="number"
+          class="md:w-full w-[50px] h-[50px] md:px-[20px] px-[10px] py-[8px] border"
+        />
+      </div>
+
       <div class="md:mt-10">
-        <div class="w-full md:block flex md:overflow-x-hidden overflow-x-scroll items-center gap-[10px]">
+        <div
+          class="w-full md:block flex md:overflow-x-hidden overflow-x-scroll items-center gap-[16px]"
+        >
           <div v-for="(image, i) in predefinedImages" :key="i">
             <img
               class="cursor-pointer border md:w-full w-[50px] h-[50px] md:h-[150px] h-[50px] rounded"
@@ -23,17 +59,33 @@
 import { ref } from "vue";
 import { useImageStore } from "../../stores/imagestore";
 import { useStructureStore } from "@/stores/structure";
+import { useTextStore } from "@/stores/textstore";
 
 const imageStore = useImageStore();
-const structureStore = useStructureStore()
+const structureStore = useStructureStore();
+const textsStore = useTextStore()
 
 const predefinedImages = ref<string[]>(imageStore.predefinedImages);
 
 const emit = defineEmits();
+const fontSize = ref(16);
+const textColor = ref("#000000");
+const showTextColorPallete = ref(false);
+
+const editor = textsStore.editor;
 
 const addImageBlock = (image: string) => {
   imageStore.selectImage(image);
-  structureStore.addImageToBlock()
+  structureStore.addImageToBlock();
+};
+
+const updateTextColor = (color: any) => {
+  textColor.value = color;
+  structureStore.applyTextColor(textColor.value);
+};
+
+const updateFontSize = () => {
+  structureStore.applyFontSize(fontSize.value);
 };
 
 const uploadToPredefined = (event: Event) => {
@@ -46,7 +98,7 @@ const uploadToPredefined = (event: Event) => {
       const reader = new FileReader();
 
       reader.onload = () => {
-        predefinedImages.value.push(reader.result as string);
+        imageStore.addToPredifinedImages(reader.result as string);
       };
 
       reader.readAsDataURL(file);
