@@ -9,6 +9,7 @@ import Document from '@tiptap/extension-document'
 import Dropcursor from '@tiptap/extension-dropcursor'
 import Paragraph from '@tiptap/extension-paragraph'
 import Text from '@tiptap/extension-text'
+import Link from '@tiptap/extension-link'
 
 export const useTextStore = defineStore("textStore", {
   state: () => ({
@@ -21,6 +22,9 @@ export const useTextStore = defineStore("textStore", {
         Paragraph,
         Text,
         Dropcursor,
+        Link.configure({
+          openOnClick: false,
+        }),
       ],
       content: '<p>Hello Text ... </p>',
     })

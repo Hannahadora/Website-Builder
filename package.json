@@ -10,6 +10,7 @@
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false"
   },
   "dependencies": {
+    "@tiptap/extension-link": "^2.1.7",
     "@tiptap/pm": "^2.1.7",
     "@tiptap/starter-kit": "^2.1.7",
     "@tiptap/vue-3": "^2.1.7",

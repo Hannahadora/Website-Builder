@@ -15,27 +15,6 @@
         </label>
       </div>
 
-      <div class="md:mb-[30px] mb:[16px]">
-        <p class="text-[13px]">Text color</p>
-        <div
-          @click="showTextColorPallete = !showTextColorPallete"
-          :class="`cursor-pointer px-[40px] py-[20px]`"
-          :style="`background-color: ${textColor}`"
-        ></div>
-        <ColorPicker v-if="showTextColorPallete" @getColor="updateTextColor" />
-      </div>
-
-
-
-      <div class="md:mb-[30px] mb-[10px]">
-        <p class="text-[13px]">Font Size</p>
-        <input
-          @change="updateFontSize"
-          v-model="fontSize"
-          type="number"
-          class="md:w-full w-[50px] h-[50px] md:px-[20px] px-[10px] py-[8px] border"
-        />
-      </div>
 
       <div class="md:mt-10">
         <div
@@ -44,7 +23,7 @@
           <div v-for="(image, i) in predefinedImages" :key="i">
             <img
               class="cursor-pointer border md:w-full w-[50px] h-[50px] md:h-[150px] h-[50px] rounded"
-              @click="addImageBlock(image)"
+              @click="updateImageBlock(image)"
               :src="image"
               alt=""
             />
@@ -74,9 +53,9 @@ const showTextColorPallete = ref(false);
 
 const editor = textsStore.editor;
 
-const addImageBlock = (image: string) => {
+const updateImageBlock = (image: string) => {
   imageStore.selectImage(image);
-  structureStore.addImageToBlock();
+  structureStore.applyImage(image)
 };
 
 const updateTextColor = (color: any) => {

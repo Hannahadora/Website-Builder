@@ -18,7 +18,7 @@
           <ContentCard
             class="mb-[10px]"
             title="layout"
-            @click="structure.addElement"
+            @click="structureStore.addElement"
           >
             <template #icon>
               <LayoutIcon class="w-[20px] h-[20px]" />
@@ -27,14 +27,14 @@
           <ContentCard
             class="mb-[10px]"
             title="text"
-            @click="structure.addTextToBlock"
+            @click="structureStore.addTextToBlock"
           >
             <template #icon>
               <Text class="w-[20px] h-[20px]" />
             </template>
           </ContentCard>
 
-          <ContentCard class="mb-[10px]" title="image">
+          <ContentCard class="mb-[10px]" title="image" @click="structureStore.addImageToBlock">
             <template #icon>
               <Image class="w-[20px] h-[20px]" />
             </template>
@@ -60,7 +60,7 @@ import { ref, onMounted } from "vue";
 import { useStructureStore } from "@/stores/structure";
 import { useToolsStore } from "../stores/toolsbar";
 
-const structure = useStructureStore();
+const structureStore = useStructureStore();
 const toolsStore = useToolsStore();
 
 onMounted(() => {

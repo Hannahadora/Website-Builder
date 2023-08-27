@@ -30,7 +30,6 @@ const showActions = ref<Boolean>(false);
 <template>
   <VueResizable
     dragElements=""
-    :fitParent="true"
     :active="['r', 'rb', 'b', 'lb', 'l', 'lt', 't', 'rt']"
     :minW="200"
     :minH="200"
@@ -38,7 +37,7 @@ const showActions = ref<Boolean>(false);
     <div
       @dblclick="showActions = !showActions"
       ref="el"
-      :class="`h-[200px] w-[full] ${
+      :class="`min-h-[200px] w-full ${
         structureStore.selectedBlockIndex === index &&
         'border border-dashed border-red-700 p-[10px]'
       } relative p-[0px] z-[${index + 1}]`"
@@ -66,44 +65,37 @@ const showActions = ref<Boolean>(false);
       </div>
       <TipTap
         v-if="item.type === 'text'"
-        class="w-auto"
+        class=""
         :style="{
           color: item.textColor,
           fontSize: `${item.fontSize}px`,
-          textAlign: item.textAlign
+          textAlign: item.textAlign,
         }"
       />
       <ImageBlock
         v-if="item.type === 'image'"
-        class="w-auto"
+        class=""
         :selectedImage="item.content"
-        :style="{
-          color: item.textColor,
-          fontSize: `${item.fontSize}px`,
-          alignText: item.textAlign
-        }"
       />
       <div
         v-if="item.type === 'layout'"
-        :class="`text-[${item.textAlign}] focus:outline-none h-full  grid grid-cols-${item.grids}`"
+        :class="`focus:outline-none w-full grid grid-cols-${item.grids}`"
         :style="{
           background: item.backgroundColor,
-          backgroundImage: `url(${item.backgroundImage})`,
           border:
             item.borderWidth > 0
               ? `${item.borderWidth}px solid ${item.borderColor}`
               : 'none',
-          color: item.textColor,
-          fontSize: `${item.fontSize}px`,
         }"
       >
-        <p v-for="n in item.grids" :key="n" 
-      :class="`${
-       item.grids > 1 &&
-        'border border-dashed'
-      }`">
+        <div
+          contenteditable
+          v-for="n in item.grids"
+          :key="n"
+          :class="`${item.grids > 1 && 'border border-dashed'}`"
+        >
           {{ item.content }}
-        </p>
+        </div>
       </div>
       <!-- <div class="resize-icon"></div> -->
     </div>

@@ -49,16 +49,36 @@
 
     <div class="md:mb-[30px] mb-[10px]">
       <p class="text-[13px]">Text align</p>
-      <select @change="updateTextAlign" class="md:w-full w-[50px] h-[50px] md:px-[20px] px-[10px] py-[8px] border" name="" id="" v-model="textAlign">
-      <option value="left" >left</option>
-      <option value="right">right</option>
-      <option value="center">center</option>
+      <select
+        @change="updateTextAlign"
+        class="md:w-full w-[50px] h-[50px] md:px-[20px] px-[10px] py-[8px] border"
+        name=""
+        id=""
+        v-model="textAlign"
+      >
+        <option value="left">left</option>
+        <option value="right">right</option>
+        <option value="center">center</option>
       </select>
     </div>
 
     <div
       class="md:grid lg:grid-cols-2 flex md:overflow-x-hidden overflow-x-scroll items-center gap-[16px] items-start"
     >
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
+        @click="setLink"
+        :class="{ 'is-active': editor.isActive('link') }"
+      >
+        setLink
+      </button>
+      <button
+        class="font-poppins p-[10px] text-[12px] border"
+        @click="editor.chain().focus().unsetLink().run()"
+        :disabled="!editor.isActive('link')"
+      >
+        unsetLink
+      </button>
       <button
         class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().undo().run()"
@@ -249,7 +269,6 @@ const updateTextColor = (color: any) => {
   textColor.value = color;
   structureStore.applyTextColor(textColor.value);
 };
-
 
 const updateTextAlign = () => {
   structureStore.applyTextAlign(textAlign.value);

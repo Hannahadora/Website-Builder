@@ -7,7 +7,7 @@ interface IBlock {
   content: string,
   backgroundColor: string,
   borderColor: string,
-  backgroundImage: string,
+  backgroundImage?: string,
   borderWidth: number,
   textColor: string,
   fontSize: number,
@@ -42,13 +42,13 @@ export const useStructureStore = defineStore("structureStore", {
     },
     addImageToBlock() {
       this.blocks.push({
-        type: "image", content: useImageStore().image, backgroundColor: "", borderColor: "", backgroundImage: "", borderWidth: 0, textColor: "",
+        type: "image", content: "", backgroundColor: "", borderColor: "", backgroundImage: "", borderWidth: 0, textColor: "",
         fontSize: 16
       });
     },
     addTextToBlock() {
       this.blocks.push({
-        type: "text", content: useTextStore().content || this.content, backgroundColor: "", borderColor: "", backgroundImage: "", borderWidth: 0, textColor: "",
+        type: "text", content: useTextStore().content, backgroundColor: "", borderColor: "", borderWidth: 0, textColor: "",
         fontSize: 16, textAlign: ""
       });
     },
@@ -58,6 +58,9 @@ export const useStructureStore = defineStore("structureStore", {
     },
     deleteBlock(index: number) {
       this.blocks.splice(index, 1);
+    },
+    applyImage(image: string) {
+      this.selectedBlock.content = image
     },
     applyBackgroundColor(color: string) {
       this.selectedBlock.backgroundColor = color;
