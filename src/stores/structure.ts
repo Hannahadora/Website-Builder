@@ -13,7 +13,8 @@ interface IBlock {
   fontSize?: number,
   width?: number,
   height?: number,
-  textAlign?: string
+  textAlign?: string,
+  config?: any
 }
 
 export const useStructureStore = defineStore("structureStore", {
@@ -36,17 +37,20 @@ export const useStructureStore = defineStore("structureStore", {
       this.blocks.push({
         type: "layout", content: this.content, backgroundColor: "", borderColor: "", backgroundImage: "", borderWidth: 0, width: 200, height: 200 
       });
+      this.selectBlock(this.blocks.length - 1)
     },
     addImageToBlock() {
       this.blocks.push({
-        type: "image", content: "", borderColor: "", backgroundImage: "", borderWidth: 0,  width: 100, height: 100
+        type: "image", content: useImageStore().image, borderColor: "", backgroundImage: "", borderWidth: 0,  width: 100, height: 100
       });
+      this.selectBlock(this.blocks.length - 1)
     },
     addTextToBlock() {
       this.blocks.push({
         type: "text", content: this.content, backgroundColor: "", borderColor: "", borderWidth: 0, textColor: "",
-        fontSize: 16, textAlign: ""
+        fontSize: 16, textAlign: "",  width: 100, height: 100 
       });
+      this.selectBlock(this.blocks.length - 1)
     },
     duplicateBlock(index: number) {
       const duplicatedBlock = { ...this.blocks[index] };
@@ -96,6 +100,10 @@ export const useStructureStore = defineStore("structureStore", {
     },
     applyTextContent(content: any) {
       this.selectedBlock.content = content
+    },
+    applySize(size: any) {
+      this.selectedBlock.height = size.height
+      this.selectedBlock.width = size.width
     }
   },
 });

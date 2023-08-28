@@ -1,4 +1,5 @@
 <template>
+ <transition>
   <main class="relative">
     <ResultModal v-if="saveDesign" />
     <div class="md:px-[40px] px-[16px] bg-green-500 h-[50px] text-[#fff] w-full fixed top-0 z-[9999] flex items-center justify-between">
@@ -28,6 +29,7 @@
       </section>
     </div>
   </main>
+ </transition>
 </template>
 
 <script setup lang="ts">

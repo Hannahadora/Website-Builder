@@ -15,15 +15,7 @@
               <LayoutIcon class="w-[20px] h-[20px]" />
             </template>
           </ContentCard>
-          <ContentCard
-            class="mb-[10px]"
-            title="layout"
-            @click="structureStore.addElement"
-          >
-            <template #icon>
-              <LayoutIcon class="w-[20px] h-[20px]" />
-            </template>
-          </ContentCard>
+       
           <ContentCard
             class="mb-[10px]"
             title="text"
@@ -37,6 +29,15 @@
           <ContentCard class="mb-[10px]" title="image" @click="structureStore.addImageToBlock">
             <template #icon>
               <Image class="w-[20px] h-[20px]" />
+            </template>
+          </ContentCard>
+          <ContentCard
+            class="mb-[10px]"
+            title="layout"
+            @click="structureStore.addElement"
+          >
+            <template #icon>
+              <LayoutIcon class="w-[20px] h-[20px]" />
             </template>
           </ContentCard>
           <ContentCard class="mb-[10px]" title="button">

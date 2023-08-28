@@ -1,59 +1,57 @@
 <template>
-  <section>
-    <div class="">
-      <img
-        class=""
-        v-if="selectedImage"
-        :src="selectedImage"
-        alt=""
-      />
-      <label
-        v-else
-        for="upload-images"
-        class="border p-[20px] w-[10%] mx-auto border-dashed border-green-500 rounded-full flex items-center justify-center mt-[20px]"
-        id="dropcontainer"
-        @change="uploadToPredefined"
+  <div class="relative" v-if="selectedImage">
+    <div class="absolute top-5 right-5" :class="`${
+        structureStore.selectedBlockIndex === index ?
+        'block': 'hidden'}`">
+      <div
+        class="bg-[#fff] px-[10px] py-[10px] float-right cursor-pointer mb-[20px] shadow"
       >
-        <span
-          class="text-[12px] text-center font-bold text-green-500 cursor-pointer"
-          ><svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="#319217"
-            viewBox="0 0 256 256"
-          >
-            <path
-              d="M244,128a83.28,83.28,0,0,1-16.8,50.4,4,4,0,1,1-6.4-4.8A76,76,0,1,0,84,128a4,4,0,0,1-8,0,83.45,83.45,0,0,1,4.57-27.27A52,52,0,1,0,72,204H96a4,4,0,0,1,0,8H72A60,60,0,1,1,83.61,93.13,84,84,0,0,1,244,128Zm-89.17-2.83a4,4,0,0,0-5.66,0l-32,32a4,4,0,0,0,5.66,5.66L148,137.66V208a4,4,0,0,0,8,0V137.66l25.17,25.17a4,4,0,0,0,5.66-5.66Z"
-            ></path>
-          </svg>
-        </span>
-        <input type="file" id="upload-images" class="hidden" />
-      </label>
+        <Menu @click="showActions = !showActions" />
+      </div>
+      <div
+        v-if="showActions"
+        class="bg-[#fff] shadow p-[8px] min-w-[150px] z-[20]"
+      >
+        <BlockAction :index="index" />
+      </div>
     </div>
-  </section>
+    <div
+      class="min-h-[200px]"
+      :class="`${
+        structureStore.selectedBlockIndex === index &&
+        'border border-dashed border-red-700 p-[10px]'
+      } p-[0px] z-[${index + 1}]`"
+    >
+      <img class="w-full h-full" :src="selectedImage" alt="img" />
+    </div>
+  </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from "vue";
+<script lang="ts" setup>
+import { onMounted, ref } from "vue";
 import { useResizeObserver } from "@vueuse/core";
 import { useImageStore } from "../../stores/imagestore";
+import { useStructureStore } from "../../stores/structure";
+import BlockAction from "../BlockAction.vue";
+import Menu from "../icons/Menu.vue";
 
 defineProps({
   selectedImage: { type: String, default: "" },
+  item: {
+    type: Object,
+    required: true,
+  },
+  index: {
+    type: Number,
+    required: true,
+  },
 });
 
 const emit = defineEmits();
 const imageStore = useImageStore();
+const structureStore = useStructureStore();
 
-const imageEl = ref(null);
-const text = ref("");
-
-useResizeObserver(imageEl, (entries) => {
-  const entry = entries[0];
-  const { width, height } = entry.contentRect;
-  text.value = `width: ${width}, height: ${height}`;
-});
+const showActions = ref<Boolean>(false);
 
 const uploadToPredefined = (event: Event) => {
   const input = event.target as HTMLInputElement;
@@ -73,6 +71,7 @@ const uploadToPredefined = (event: Event) => {
   }
   input.value = ""; // Clear the input to allow uploading same image again
 };
+
 </script>
 
 <style scoped>

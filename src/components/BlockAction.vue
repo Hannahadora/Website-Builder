@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { useStructureStore } from "@/stores/structure";
+import { useStructureStore } from "../stores/structure";
 import { useImageStore } from "../stores/imagestore";
 import { useToolsStore } from "../stores/toolsbar";
 

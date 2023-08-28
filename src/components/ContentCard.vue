@@ -14,8 +14,8 @@ const showStyle = (title: string) => {
 };
 </script>
 <template>
-  <div
-    class="border border-green-700 hover:border-green-900 rounded-[5px] max-w-[70px] cursor-pointer"
+  <div :class="toolsStore.selectedTool === title.toLowerCase() &&  'border border green-900'"
+    class="hover:border hover:border-green-900 rounded-[5px] max-w-[70px] cursor-pointer"
   >
     <div
       class="py-[5px] px-[5px] flex flex-col items-center justify-center"

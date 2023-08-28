@@ -22,7 +22,7 @@ const setStructure = (index: any, item: any) => {
   <main class="relative min-h-[100vh] h-[100%]">
       <div v-for="(item, index) in structureStore.blocks" :key="index">
         <Structure
-          @click="setStructure(index, item)"
+          @click.stop="setStructure(index, item)"
           :item="item"
           :index="index"
         />

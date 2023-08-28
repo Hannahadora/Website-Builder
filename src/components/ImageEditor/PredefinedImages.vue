@@ -51,11 +51,10 @@ const fontSize = ref(16);
 const textColor = ref("#000000");
 const showTextColorPallete = ref(false);
 
-const editor = textsStore.editor;
-
 const updateImageBlock = (image: string) => {
   imageStore.selectImage(image);
   structureStore.applyImage(image)
+  // structureStore.addImageToBlock()
 };
 
 const updateTextColor = (color: any) => {
