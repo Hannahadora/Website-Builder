@@ -1,8 +1,79 @@
 # landing-page-builder
 
-This template should help get you started developing with Vue 3 in Vite.
+![Home Page](https://hackmd.io/_uploads/H1RsfD5p3.png)
+
+
+# Drag & Drop Landing Page Builder
+
+This is a simple drag and drop landing page builder built using Vue.js. It allows users to create landing pages by dragging and dropping text and image blocks. The application provides features to edit text content, select predefined images for image blocks, rearrange blocks, duplicate blocks, and delete blocks. The landing page data can be exported to JSON format by clicking the "Save Design" button.
+
+## Features
+
+- Drag and drop text and image blocks to create a landing page.
+- Editable text content for text blocks.
+- Choose from 3-4 predefined images for image blocks.
+- Rearrange blocks by dragging and dropping.
+- Duplicate and delete blocks.
+- Export landing page data to JSON format.
+
+![text editor and styles](https://hackmd.io/_uploads/By9L7Dc6h.png)
+
+![Image editor and predefined images](https://hackmd.io/_uploads/SJxS4Dc6h.png)
+
+![section/blocks view](https://hackmd.io/_uploads/HyUgrvcTh.png)
+
+
+## Getting Started
+
+1. Clone the repository to your local machine.
+2. Install the required dependencies using `npm install`.
+3. Run the development server using `npm run serve`.
+
+## Usage
+
+1. Edit text content by clicking on the text block and making changes.
+2. Click on the image block to select a predefined image.
+3. Rearrange blocks by dragging and dropping them either from the section area or on the board.
+4. Duplicate a block by clicking the duplicate button.
+5. Delete a block by clicking the delete button.
+6. Click the "Save Design" button to export landing page data to JSON format (console.log).
+
+## Technologies and Plugins
+
+- Vue 3
+- Composition Api
+- TypeScript 
+- CSS 
+- Tailwind CSS
+- Vuedraggable-next
+- Vue-resizeable
+- Pinia for state management
+- vue-color-kit for selection
+- Tiptap for editting etc
+
+
+## Features
+
+- Drag and drop text and image blocks to create a landing page.
+- Editable text content for text blocks.
+- Choose from 3-4 predefined images for image blocks.
+- Rearrange blocks by dragging and dropping.
+- Duplicate and delete blocks.
+- Export landing page data to JSON format.
+
+## Getting Started
+
+1. Clone the repository to your local machine.
+2. Install the required dependencies using `npm install`.
+3. Run the development server using `npm run dev`.
+
+
+
 
 ## Recommended IDE Setup
+
+This template should help get you started developing with Vue 3 in Vite.
+
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
