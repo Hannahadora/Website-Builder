@@ -1,5 +1,5 @@
 <template>
-  <editor-content :editor="editor" />
+  <editor-content :editor="editor" content="jasdhkfiwoejkfhakjsd" />
 </template>
 
 <script setup>

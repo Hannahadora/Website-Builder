@@ -5,13 +5,14 @@ import { useTextStore } from "./textstore";
 interface IBlock {
   type: string;
   content: string,
-  backgroundColor: string,
+  backgroundColor?: string,
   borderColor: string,
   backgroundImage?: string,
   borderWidth: number,
-  textColor: string,
-  fontSize: number,
-  grids?: number,
+  textColor?: string,
+  fontSize?: number,
+  width?: number,
+  height?: number,
   textAlign?: string
 }
 
@@ -33,22 +34,17 @@ export const useStructureStore = defineStore("structureStore", {
     },
     addElement() {
       this.blocks.push({
-        type: "layout", content: this.content, backgroundColor: "", borderColor: "", backgroundImage: "", borderWidth: 0, textColor: "",
-        fontSize: 16, grids: 1, textAlign: ""
+        type: "layout", content: this.content, backgroundColor: "", borderColor: "", backgroundImage: "", borderWidth: 0, width: 200, height: 200 
       });
-    },
-    updateGrid(grids: number) {
-      this.selectedBlock.grids = grids;
     },
     addImageToBlock() {
       this.blocks.push({
-        type: "image", content: "", backgroundColor: "", borderColor: "", backgroundImage: "", borderWidth: 0, textColor: "",
-        fontSize: 16
+        type: "image", content: "", borderColor: "", backgroundImage: "", borderWidth: 0,  width: 100, height: 100
       });
     },
     addTextToBlock() {
       this.blocks.push({
-        type: "text", content: useTextStore().content, backgroundColor: "", borderColor: "", borderWidth: 0, textColor: "",
+        type: "text", content: this.content, backgroundColor: "", borderColor: "", borderWidth: 0, textColor: "",
         fontSize: 16, textAlign: ""
       });
     },
@@ -59,8 +55,23 @@ export const useStructureStore = defineStore("structureStore", {
     deleteBlock(index: number) {
       this.blocks.splice(index, 1);
     },
+    moveItemToBack(index: number) {
+      const itemToMove = this.blocks.splice(index, 1)[0]; 
+      this.blocks.push(itemToMove); 
+    },
+    
+    moveItemToFront(index: number) {
+      const itemToMove = this.blocks.splice(index, 1)[0];
+      this.blocks.unshift(itemToMove);
+    },
     applyImage(image: string) {
       this.selectedBlock.content = image
+    },
+    applyWidth(width: number) {
+      this.selectedBlock.width = width
+    },
+    applyHeight(height: number) {
+      this.selectedBlock.height = height
     },
     applyBackgroundColor(color: string) {
       this.selectedBlock.backgroundColor = color;
@@ -82,6 +93,9 @@ export const useStructureStore = defineStore("structureStore", {
     },
     applyTextAlign(key: string) {
       this.selectedBlock.textAlign = key;
+    },
+    applyTextContent(content: any) {
+      this.selectedBlock.content = content
     }
   },
 });

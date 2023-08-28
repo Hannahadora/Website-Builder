@@ -6,8 +6,10 @@ import { useToolsStore } from "../stores/toolsbar";
 import ImageBlock from "./ImageEditor/ImageBlock.vue";
 import TipTap from "./TextEditor/TipTap.vue";
 import VueResizable from "vue-resizable";
+import BlockAction from "./BlockAction.vue";
 
-defineProps({
+
+const props = defineProps({
   item: {
     type: Object,
     required: true,
@@ -25,43 +27,29 @@ const toolsStore = useToolsStore();
 const el = ref<HTMLElement | null>(null);
 
 const showActions = ref<Boolean>(false);
+
+
 </script>
 
 <template>
   <VueResizable
     dragElements=""
     :active="['r', 'rb', 'b', 'lb', 'l', 'lt', 't', 'rt']"
-    :minW="200"
-    :minH="200"
   >
     <div
       @dblclick="showActions = !showActions"
       ref="el"
-      :class="`min-h-[200px] w-full ${
+      :class="`min-w-[${item.width}px] min-h-[${item.height}px] ${
         structureStore.selectedBlockIndex === index &&
         'border border-dashed border-red-700 p-[10px]'
       } relative p-[0px] z-[${index + 1}]`"
+      
     >
       <div
         v-if="showActions"
-        class="absolute top-0 right-0 bg-green-300 p-[8px] w-[60px] z-[20]"
+        class="absolute top-0 right-0 border shadow p-[8px] w-[100px] z-[20]"
       >
-        <div class="flex items-center justify-end gap-[8px] cursor-pointer">
-          <img
-            class="w-[16px] h-[16px]"
-            title="delete"
-            @click="structureStore.deleteBlock(index)"
-            src="/images/delete_icon.svg"
-            alt="delete"
-          />
-          <img
-            class="w-[16px] h-[16px]"
-            title="duplicate"
-            @click="structureStore.duplicateBlock(index)"
-            src="/images/duplicate_icon.svg"
-            alt="duplicate"
-          />
-        </div>
+        <BlockAction :index="index"/>
       </div>
       <TipTap
         v-if="item.type === 'text'"
@@ -79,7 +67,7 @@ const showActions = ref<Boolean>(false);
       />
       <div
         v-if="item.type === 'layout'"
-        :class="`focus:outline-none w-full grid grid-cols-${item.grids}`"
+        :class="`min-h-[${item.height}px] focus:outline-none w-full text-transparent`"
         :style="{
           background: item.backgroundColor,
           border:
@@ -87,15 +75,7 @@ const showActions = ref<Boolean>(false);
               ? `${item.borderWidth}px solid ${item.borderColor}`
               : 'none',
         }"
-      >
-        <div
-          contenteditable
-          v-for="n in item.grids"
-          :key="n"
-          :class="`${item.grids > 1 && 'border border-dashed'}`"
-        >
-          {{ item.content }}
-        </div>
+      >{{ item.content }}
       </div>
       <!-- <div class="resize-icon"></div> -->
     </div>

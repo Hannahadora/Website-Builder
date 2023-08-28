@@ -1,11 +1,17 @@
 <template>
   <main class="relative">
-    <div class="bg-green-500 h-[50px] text-[#fff] w-full fixed top-0 z-[9999]">
+    <ResultModal v-if="saveDesign" />
+    <div class="md:px-[40px] px-[16px] bg-green-500 h-[50px] text-[#fff] w-full fixed top-0 z-[9999] flex items-center justify-between">
       <h5
         class="text-[18px] px-[10px] py-[7px] font-poppins italic text-center"
       >
         Design Board
       </h5>
+      <button @click="saveDesign = !saveDesign"
+        class="rounded text-[18px] px-[10px] py-[7px] font-poppins italic text-center bg-black text-white"
+      >
+        Save Design
+      </button>
     </div>
     <div class="relative flex md:flex-row flex-col md:items-start mt-[50px]">
       <section class="md:w-[25%] w-full fixed left-0 top-0 z-[8888] pt-[50px]">
@@ -29,10 +35,12 @@ import SideBar from "@/components/SideBar.vue";
 import Edit from "@/components/Edit.vue";
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
+import ResultModal from "@/components/ResultModal.vue";
 
 const route = useRoute();
 
 const editMode = ref<Boolean>(true);
+const saveDesign = ref<Boolean>(false);
 
 const setEditMode = (val: Boolean) => {
   editMode.value = val;

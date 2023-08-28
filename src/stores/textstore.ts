@@ -10,6 +10,7 @@ import Dropcursor from '@tiptap/extension-dropcursor'
 import Paragraph from '@tiptap/extension-paragraph'
 import Text from '@tiptap/extension-text'
 import Link from '@tiptap/extension-link'
+import { useStructureStore } from "./structure";
 
 export const useTextStore = defineStore("textStore", {
   state: () => ({
@@ -27,12 +28,16 @@ export const useTextStore = defineStore("textStore", {
         }),
       ],
       content: '<p>Hello Text ... </p>',
+      onUpdate: ({ editor }) => {
+        const json = editor.getJSON()
+        console.log('json', json)
+        const html = editor.getHTML()
+        console.log('html', html)
+        useStructureStore().applyTextContent(html)
+        // send the content to an API here
+      },
     })
   }),
   actions: {
-    setDefautltTextStyle(key: any) {
-      this.defaultStyle = key
-      this.content = key
-    },
   },
 });

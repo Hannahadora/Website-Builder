@@ -1,6 +1,10 @@
 <template>
   <div>
- 
+ <navbar class="">
+  <ul navlist>
+
+  </ul>
+ </navbar>
   </div>
 </template>
 
