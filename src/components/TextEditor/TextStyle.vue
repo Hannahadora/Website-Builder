@@ -67,20 +67,6 @@
     >
       <button
         class="font-poppins p-[10px] text-[12px] border"
-        @click="setLink"
-        :class="{ 'is-active': editor.isActive('link') }"
-      >
-        setLink
-      </button>
-      <button
-        class="font-poppins p-[10px] text-[12px] border"
-        @click="editor.chain().focus().unsetLink().run()"
-        :disabled="!editor.isActive('link')"
-      >
-        unsetLink
-      </button>
-      <button
-        class="font-poppins p-[10px] text-[12px] border"
         @click="editor.chain().focus().undo().run()"
         :disabled="!editor.can().chain().focus().undo().run()"
       >
@@ -261,7 +247,6 @@ const emit = defineEmits();
 const editor = textsStore.editor;
 
 const addTextBlock = (style: string) => {
-  textsStore.setDefautltTextStyle(style);
   structureStore.addTextToBlock();
 };
 
