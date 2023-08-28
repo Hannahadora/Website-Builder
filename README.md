@@ -23,12 +23,6 @@ This is a simple drag and drop landing page builder built using Vue.js. It allow
 ![section/blocks view](https://hackmd.io/_uploads/HyUgrvcTh.png)
 
 
-## Getting Started
-
-1. Clone the repository to your local machine.
-2. Install the required dependencies using `npm install`.
-3. Run the development server using `npm run serve`.
-
 ## Usage
 
 1. Edit text content by clicking on the text block and making changes.
@@ -51,15 +45,6 @@ This is a simple drag and drop landing page builder built using Vue.js. It allow
 - vue-color-kit for selection
 - Tiptap for editting etc
 
-
-## Features
-
-- Drag and drop text and image blocks to create a landing page.
-- Editable text content for text blocks.
-- Choose from 3-4 predefined images for image blocks.
-- Rearrange blocks by dragging and dropping.
-- Duplicate and delete blocks.
-- Export landing page data to JSON format.
 
 ## Getting Started
 
