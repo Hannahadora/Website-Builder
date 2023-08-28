@@ -14,7 +14,7 @@ interface IBlock {
   width?: number,
   height?: number,
   textAlign?: string,
-  config?: any
+  configxx?: any
 }
 
 export const useStructureStore = defineStore("structureStore", {

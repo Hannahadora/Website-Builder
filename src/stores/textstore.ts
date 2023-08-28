@@ -13,7 +13,7 @@ interface IBlock {
   width?: number,
   height?: number,
   textAlign?: string,
-  config?: any
+  configxx?: any
 }
 
 export const useTextStore = defineStore("textStore", {
@@ -26,10 +26,10 @@ export const useTextStore = defineStore("textStore", {
     setTextBlocks() {
       this.textBlocks = useStructureStore().blocks.filter((block: any) => block.type == 'text')
     },
-    setTextConfig(json: any, index: number) {
+    setTextConfigxx(json: any, index: number) {
       const textBlocks = this.textBlocks; 
       const textBlock = textBlocks[index];
-      textBlock.config = json;
+      textBlock.configxx = json;
     }
   },
 });

@@ -201,10 +201,10 @@ const editor = new Editor({
   content: "<p>Start Typing...</p>",
   extensions: [StarterKit],
   onUpdate: ({ editor }) => {
-    const json = editor.getJSON();
-    textsStore.setTextConfig(json, props.index)
     const html = editor.getHTML();
-    useStructureStore().applyTextContent(html);
+    structureStore.applyTextContent(html);
+    const json = editor.getJSON();
+    textsStore.setTextConfigxx(json, props.index)
   },
 });
 </script>
