@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute top-0 right-0 bg-[#fff] w-[50%] p-[20px] z-[9999]">
+  <div class="absolute top-[0px] right-[50px] bg-[#fff] shadow w-[50%] p-[20px] z-[9999]">
     <input class="w-full border p-[16px] mb-[36px]" type="text" v-model="designName" placeholder="Design Name"/>
 
    <!-- <div>

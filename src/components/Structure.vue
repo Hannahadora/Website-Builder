@@ -5,8 +5,6 @@ import { useImageStore } from "../stores/imagestore";
 import { useToolsStore } from "../stores/toolsbar";
 import ImageBlock from "./ImageEditor/ImageBlock.vue";
 import VueResizable from "vue-resizable";
-import BlockAction from "./BlockAction.vue";
-import Menu from "./icons/Menu.vue";
 import TextBlock from "./TextEditor/TextBlock.vue";
 import LayoutBlock from "./LayoutEditor/LayoutBlock.vue";
 
@@ -32,8 +30,10 @@ const showActions = ref<Boolean>(false);
 
 <template>
   <VueResizable
-    dragElements="cursor-move"
     :active="['r', 'rb', 'b', 'lb', 'l', 'lt', 't', 'rt']"
+    :minWidth="100"
+    :width="item.width"
+    :height="item.height"
   >
     <TextBlock v-if="item.type === 'text'" :index="index" :item="item" />
 

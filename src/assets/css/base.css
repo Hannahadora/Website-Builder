@@ -3,15 +3,22 @@ html {
 }
 
 body {
-  margin: 0 auto;
-  padding: 0;
-  max-width: 1440px;
   font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: normal;
   background-color: #F7F7F7;
   color: #333333;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-container {
+  margin: 0 auto;
+  max-width: 1440px;
+  width: 100%;
 }
 
 .font-poppins {
@@ -27,4 +34,14 @@ body {
   cursor: se-resize;
   background-color: #000;
   border: 1px solid #fff;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.5s ease;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }

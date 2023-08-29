@@ -20,7 +20,7 @@ export const useTextStore = defineStore("textStore", {
   state: () => ({
     defaultStyle: null,
     content: "",
-    textBlocks: <IBlock[]>[]
+    textBlocks: <IBlock[]>[] = useStructureStore().blocks.filter((block: any) => block.type == 'text')
   }),
   actions: {
     setTextBlocks() {

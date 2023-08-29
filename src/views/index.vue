@@ -18,6 +18,7 @@
 
 <style scoped>
 .home-bg {
+  width: 100%;
   height: 100vh;
   background: url("/images/index-hero.jpg");
   background-repeat: no-repeat;
